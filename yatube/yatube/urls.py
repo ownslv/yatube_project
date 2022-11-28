@@ -14,8 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+# Функция include позволит использовать path() из других файлов.
+# Импортируем!
+from django.urls import include, path 
+
 
 urlpatterns = [
+    # импорт правил из приложения posts
+    path('', include('posts.urls')),
+    # Если в приложении posts не найдётся совпадений -
+    # Django продолжит искать совпадения здесь, в головном файле urls.py.
     path('admin/', admin.site.urls),
 ]
